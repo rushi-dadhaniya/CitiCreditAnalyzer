@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CitiCreditAnalyzer</string>
+    <string name="action_settings">Settings</string>
+	<string name="select_file">Select File</string>
+	<string name="enter_password">Enter password for file</string>
+	<string name="submit_password">Submit Password</string>
+	<string name="empty_string"></string>
+	<string name="back">Back</string>
+	
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dodgerblue">#104E8B</color>
+    <color name="blazeorange">#FF6600</color>
+    <color name="backblue">#00BFFF</color>
+    <color name="greenishumber">#FF3D0D</color>
+    <color name="orangered">#CD3700</color>
+    <string name="password_please">Password Please</string>
+</resources>
