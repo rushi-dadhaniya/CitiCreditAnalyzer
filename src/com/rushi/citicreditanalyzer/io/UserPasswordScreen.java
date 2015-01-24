@@ -1,12 +1,8 @@
 package com.rushi.citicreditanalyzer.io;
 
-import com.example.citicreditanalyzer.R;
-import com.rushi.citicreditanalyzer.main.HomeScreen;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.citicreditanalyzer.R;
+import com.rushi.citicreditanalyzer.fileprocessor.PDFToTextConverter;
+import com.rushi.citicreditanalyzer.main.HomeScreen;
 
 public class UserPasswordScreen extends ActionBarActivity{
 
@@ -30,7 +30,7 @@ public class UserPasswordScreen extends ActionBarActivity{
 		setContentView(R.layout.activity_userpassword_screen);
 		
 		Intent userPasswordIntent = getIntent();
-		setFilePath(userPasswordIntent.getStringExtra("SelectedFilePath"));
+		setFilePath(userPasswordIntent.getStringExtra("selectedFilePath"));
 		
 		final Animation animationTransalteForward = AnimationUtils.loadAnimation(this,
 				R.anim.anim_translate_forward);
@@ -140,7 +140,10 @@ public class UserPasswordScreen extends ActionBarActivity{
 
 	private void processRequest(String userPassword) {
 
-		Log.d("password", userPassword);
+		Intent PDFConverterIntent = new Intent(this, PDFToTextConverter.class);
+		PDFConverterIntent.putExtra("selectedFilePath", getFilePath());
+		PDFConverterIntent.putExtra("userPassword", userPassword);
+		startActivity(PDFConverterIntent);
 	}
 
 	public static EditText getUserpasswordedittext() {

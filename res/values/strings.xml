@@ -17,4 +17,5 @@
     <color name="greenishumber">#FF3D0D</color>
     <color name="orangered">#CD3700</color>
     <string name="password_please">Password Please</string>
+    <string name="processing">Processing...</string>
 </resources>

@@ -88,7 +88,7 @@ public class HomeScreen extends ActionBarActivity {
 			if (isPDFFile(filePath)) {
 				
 				Intent userPasswordIntent = new Intent(this,UserPasswordScreen.class);
-				userPasswordIntent.putExtra("SelectedFilePath", filePath);
+				userPasswordIntent.putExtra("selectedFilePath", filePath);
 				startActivity(userPasswordIntent);
 				
 			} else {
