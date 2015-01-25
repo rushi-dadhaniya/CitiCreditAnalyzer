@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.citicreditanalyzer.R;
+import com.rushi.citicreditanalyzer.fileprocessor.FileUtil;
 import com.rushi.citicreditanalyzer.io.UserPasswordScreen;
 
 public class HomeScreen extends ActionBarActivity {
@@ -20,18 +21,17 @@ public class HomeScreen extends ActionBarActivity {
 	private static String selectedFilePath;
 	private static Button selectFileButton;
 	private static final int filePickerRequestCode = 123;
-	private static final String DOT = ".";
-	private static final String PDF_EXTENSION = "pdf";
 	private static final int ANIMATION_DURATION = 500;
 	private static final String SELECT_PDF_FILE_MESSAGE = "Please select pdf file";
+	private static Animation animationTranslateForward;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 
-		final Animation animationTransalteForward = AnimationUtils.loadAnimation(this,
-				R.anim.anim_translate_forward);
+		setAnimationTranslateForward(AnimationUtils.loadAnimation(this,
+				R.anim.anim_translate_forward));
 
 		selectFileButton = (Button) findViewById(R.id.selectFileButton);
 		selectFileButton.setOnClickListener(new OnClickListener() {
@@ -42,32 +42,35 @@ public class HomeScreen extends ActionBarActivity {
 				animateButtonAndCallFilePicker(view);
 			}
 
-			public void animateButtonAndCallFilePicker(View view) {
-				view.startAnimation(animationTransalteForward);
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(ANIMATION_DURATION);
-						} catch (InterruptedException e) {
-						}
-
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								callFilePickerIntent();
-							}
-
-						});
-					}
-				};
-
-				thread.start();
-
-			}
+			
 		});
 	}
 
+	public void animateButtonAndCallFilePicker(View view) {
+		
+		view.startAnimation(getAnimationTranslateForward());
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(ANIMATION_DURATION);
+				} catch (InterruptedException e) {
+				}
+
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						callFilePickerIntent();
+					}
+
+				});
+			}
+		};
+
+		thread.start();
+
+	}
+	
 	public void callFilePickerIntent() {
 
 		Intent filePickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -84,31 +87,30 @@ public class HomeScreen extends ActionBarActivity {
 		if (requestCode == getFilepickerRequestcode()
 				&& resultCode == RESULT_OK) {
 
-			String filePath = resultantFilePickerIntent.getData().getPath();
-			if (isPDFFile(filePath)) {
-				
-				Intent userPasswordIntent = new Intent(this,UserPasswordScreen.class);
-				userPasswordIntent.putExtra("selectedFilePath", filePath);
-				startActivity(userPasswordIntent);
-				
-			} else {
-				
-				Toast.makeText(this, SELECT_PDF_FILE_MESSAGE, Toast.LENGTH_LONG)
-						.show();
-			}
+			validateFileAndCallUserPasswordIntent(resultantFilePickerIntent);
 
 		}
 	}
 
-	private boolean isPDFFile(String filePath) {
-
-		if(filePath != null && !filePath.isEmpty()) {
-			int dotIndex = filePath.lastIndexOf(DOT);
-			String extension = filePath.substring(dotIndex + 1);
-			return extension.equalsIgnoreCase(PDF_EXTENSION);
+	private void validateFileAndCallUserPasswordIntent(
+			Intent resultantFilePickerIntent) {
+		FileUtil fileUtil = new FileUtil();
+		String filePath = resultantFilePickerIntent.getData().getPath();
+		if (fileUtil.isPDFFile(filePath)) {
+			
+			callUserPasswordIntent(filePath);
+			
+		} else {
+			
+			Toast.makeText(this, SELECT_PDF_FILE_MESSAGE, Toast.LENGTH_LONG)
+					.show();
 		}
-		return false;
+	}
 
+	private void callUserPasswordIntent(String filePath) {
+		Intent userPasswordIntent = new Intent(this,UserPasswordScreen.class);
+		userPasswordIntent.putExtra("selectedFilePath", filePath);
+		startActivity(userPasswordIntent);
 	}
 
 	public static int getFilepickerRequestcode() {
@@ -140,6 +142,15 @@ public class HomeScreen extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public static Animation getAnimationTranslateForward() {
+		return animationTranslateForward;
+	}
+
+	public static void setAnimationTranslateForward(
+			Animation animationTranslateForward) {
+		HomeScreen.animationTranslateForward = animationTranslateForward;
 	}
 
 }
