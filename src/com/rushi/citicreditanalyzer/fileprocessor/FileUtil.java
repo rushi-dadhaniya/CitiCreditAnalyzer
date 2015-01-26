@@ -14,7 +14,7 @@ public class FileUtil {
 		
 	}
 
-	private String getExtension(String filePath) {
+	public String getExtension(String filePath) {
 
 		if(filePath != null && !filePath.isEmpty()) {
 			int dotIndex = filePath.lastIndexOf(DOT);
