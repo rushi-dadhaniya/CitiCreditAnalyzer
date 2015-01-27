@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.citicreditanalyzer.R;
-import com.rushi.citicreditanalyzer.fileprocessor.PDFToTextConverter;
 import com.rushi.citicreditanalyzer.main.HomeScreen;
+import com.rushi.citicreditanalyzer.screen.FeatureListScreen;
 
 public class UserPasswordScreen extends ActionBarActivity{
 
@@ -140,10 +140,10 @@ public class UserPasswordScreen extends ActionBarActivity{
 
 	private void processRequest(String userPassword) {
 
-		Intent PDFConverterIntent = new Intent(this, PDFToTextConverter.class);
-		PDFConverterIntent.putExtra("selectedFilePath", getFilePath());
-		PDFConverterIntent.putExtra("userPassword", userPassword);
-		startActivity(PDFConverterIntent);
+		Intent FeatureListIntent = new Intent(this, FeatureListScreen.class);
+		FeatureListIntent.putExtra("selectedFilePath", getFilePath());
+		FeatureListIntent.putExtra("userPassword", userPassword);
+		startActivity(FeatureListIntent);
 	}
 
 	public static EditText getUserpasswordedittext() {
