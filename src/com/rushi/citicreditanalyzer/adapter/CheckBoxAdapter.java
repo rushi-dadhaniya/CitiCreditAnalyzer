@@ -1,5 +1,6 @@
 package com.rushi.citicreditanalyzer.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ public class CheckBoxAdapter extends ArrayAdapter<Feature>{
 		this.features = features;
 	}
 
-	@Override
+	@SuppressLint("InflateParams") @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		ListViewHolder listViewHolder = null;
