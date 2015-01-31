@@ -8,7 +8,12 @@
 	<string name="submit_password">Submit Password</string>
 	<string name="empty_string"></string>
 	<string name="back">Back</string>
-	
+	<string name="On_Off">ON/OFF</string>
+	<string name="password_please">Password Please</string>
+    <string name="processing">Processing</string>
+    <string name="submit">Submit</string>
+    <string name="select_features">Select Features</string>
+    
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="dodgerblue">#104E8B</color>
@@ -16,7 +21,7 @@
     <color name="backblue">#00BFFF</color>
     <color name="greenishumber">#FF3D0D</color>
     <color name="orangered">#CD3700</color>
-    <string name="password_please">Password Please</string>
-    <string name="processing">Processing...</string>
-    <string name="submit">Submit</string>
+    <color name="tealgreen">#00897B</color>
+    <color name="lightpurple">#976b93</color>
+    <color name="darkpurple">#7a378b</color>
 </resources>

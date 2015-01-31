@@ -2,17 +2,16 @@ package com.rushi.citicreditanalyzer.screen;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.citicreditanalyzer.R;
+import com.rushi.citicreditanalyzer.adapter.CheckBoxAdapter;
 import com.rushi.citicreditanalyzer.citi.creditcard.CreditCardFeatures;
 
-public class FeatureListScreen extends ActionBarActivity{
+public class FeatureListScreen extends Activity{
 
-	private ArrayAdapter<String> simpleListAdapter;
 	private ArrayList<String> featureList;
 	
 	@Override
@@ -20,10 +19,20 @@ public class FeatureListScreen extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feature_list);
 		featureList = getFeatureList();
-		simpleListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,featureList);
-		ListView featureListView = (ListView) findViewById(R.id.featureList);
-		featureListView.setAdapter(simpleListAdapter);
+		Feature features[] = new Feature[featureList.size()];
+		for(int i = 0 ; i < featureList.size() ; i++) {
+			Feature feature = new Feature();
+			feature.setFeature(featureList.get(i));
+			feature.setSelected(true);
+			features[i] = feature;
+		}
+		CheckBoxAdapter checkBoxAdapter = new CheckBoxAdapter(this, R.layout.activity_checkboxed_list, features);
+		ListView featureListView = (ListView) findViewById(R.id.featureListView);
+		featureListView.setAdapter(checkBoxAdapter);
 	}
+	
+	
+
 	public ArrayList<String> getFeatureList() {
 		featureList = new ArrayList<String>();
 		for(CreditCardFeatures creditCardFeature : CreditCardFeatures.values()) {

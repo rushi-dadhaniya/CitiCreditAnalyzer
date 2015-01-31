@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:gravity="center" 
+    android:background="@color/lightpurple"
 >
-    
-    <ListView
-        android:id="@+id/featureList"
-        android:layout_width="match_parent"
-        android:gravity="center"
-		android:layout_height="0dp"
-        android:layout_weight="1"
-    ></ListView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/select_features"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
     <Button
-        android:id="@+id/submitFeatures"
+        android:id="@+id/submitSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_marginTop="20sp"
-        android:background="@drawable/passwordscreenbuttonshape"
+        android:layout_gravity="center"
+        android:background="@drawable/submitfeaturesbuttonshape"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:drawableLeft="@drawable/submit_icon"
+        android:drawablePadding="10sp"
+        android:text="@string/submit" />
+
+    <ListView
+        android:id="@+id/featureListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/lightpurple"
     />
 
 </LinearLayout>
