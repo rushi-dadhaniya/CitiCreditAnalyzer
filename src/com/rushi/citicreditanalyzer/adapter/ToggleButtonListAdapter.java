@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.citicreditanalyzer.R;
-import com.rushi.citicreditanalyzer.screen.Item;
+import com.rushi.citicreditanalyzer.vo.Item;
 
 public class ToggleButtonListAdapter extends ArrayAdapter<Item>{
 

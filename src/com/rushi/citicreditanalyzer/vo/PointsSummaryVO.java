@@ -1,4 +1,4 @@
-package com.rushi.citicreditanalyzer.citi.creditcard;
+package com.rushi.citicreditanalyzer.vo;
 
 public class PointsSummaryVO {
 

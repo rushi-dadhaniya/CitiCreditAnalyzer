@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.citicreditanalyzer.R;
-import com.rushi.citicreditanalyzer.screen.Feature;
+import com.rushi.citicreditanalyzer.vo.Feature;
 
 public class CheckBoxAdapter extends ArrayAdapter<Feature>{
 

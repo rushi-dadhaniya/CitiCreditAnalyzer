@@ -1,4 +1,4 @@
-package com.rushi.citicreditanalyzer.main;
+package com.rushi.citicreditanalyzer.screen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.citicreditanalyzer.R;
 import com.rushi.citicreditanalyzer.fileprocessor.FileUtil;
-import com.rushi.citicreditanalyzer.io.UserPasswordScreen;
 
 public class HomeScreen extends ActionBarActivity {
 

@@ -1,4 +1,4 @@
-package com.rushi.citicreditanalyzer.io;
+package com.rushi.citicreditanalyzer.screen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.citicreditanalyzer.R;
-import com.rushi.citicreditanalyzer.main.HomeScreen;
-import com.rushi.citicreditanalyzer.screen.FeatureListScreen;
 
 public class UserPasswordScreen extends ActionBarActivity{
 

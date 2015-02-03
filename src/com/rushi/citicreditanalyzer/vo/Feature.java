@@ -1,4 +1,4 @@
-package com.rushi.citicreditanalyzer.screen;
+package com.rushi.citicreditanalyzer.vo;
 
 public class Feature {
 

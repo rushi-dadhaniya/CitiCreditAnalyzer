@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import com.example.citicreditanalyzer.R;
 import com.rushi.citicreditanalyzer.adapter.CheckBoxAdapter;
 import com.rushi.citicreditanalyzer.citi.creditcard.CreditCardFeatures;
+import com.rushi.citicreditanalyzer.vo.Feature;
 
 public class FeatureListScreen extends Activity{
 
