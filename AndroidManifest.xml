@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.rushi.citicreditanalyzer.screen.HomeScreen"
+            android:name="com.rushi.citicreditanalyzer.activity.HomeScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,20 +25,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rushi.citicreditanalyzer.screen.UserPasswordScreen"
+            android:name="com.rushi.citicreditanalyzer.activity.UserPasswordScreen"
             android:label="@string/app_name"
-            android:parentActivityName="com.rushi.citicreditanalyzer.screen.HomeScreen"
+            android:parentActivityName="com.rushi.citicreditanalyzer.activity.HomeScreen"
         />
         <activity
             android:name="com.rushi.citicreditanalyzer.fileprocessor.PDFToTextConverter"
             android:label="@string/app_name"
-            android:parentActivityName="com.rushi.citicreditanalyzer.screen.UserPasswordScreen"
+            android:parentActivityName="com.rushi.citicreditanalyzer.activity.UserPasswordScreen"
         >
         </activity>
         <activity
-            android:name="com.rushi.citicreditanalyzer.screen.FeatureListScreen"
+            android:name="com.rushi.citicreditanalyzer.activity.FeatureListScreen"
             android:label="@string/app_name"
-            android:parentActivityName="com.rushi.citicreditanalyzer.screen.UserPasswordScreen"
+            android:parentActivityName="com.rushi.citicreditanalyzer.activity.UserPasswordScreen"
+        >
+        </activity>
+        <activity
+            android:name="com.rushi.citicreditanalyzer.activity.ProcessingScreen"
+            android:label="@string/app_name"
+            android:parentActivityName="com.rushi.citicreditanalyzer.activity.FeatureListScreen"
         >
         </activity>
     </application>

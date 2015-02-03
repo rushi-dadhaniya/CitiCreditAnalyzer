@@ -1,8 +1,9 @@
-package com.rushi.citicreditanalyzer.screen;
+package com.rushi.citicreditanalyzer.activity;
 
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +33,7 @@ public class FeatureListScreen extends Activity{
 		
 		Button submitFeatureButton = getSubmitFeatureButton();
 		handleButtonClick(submitFeatureButton);
+
 	}
 
 	private void handleButtonClick(Button submitFeatureButton) {
@@ -40,12 +42,22 @@ public class FeatureListScreen extends Activity{
 			@Override
 			public void onClick(View v) {
 				ArrayList<Feature> selectedFeatures = getSelectedFeatures();
+				invokeProcessingScreenIntent(selectedFeatures);
 			}
+
+			
 
 			
 		});
 	}
 
+	private void invokeProcessingScreenIntent(
+			ArrayList<Feature> selectedFeatures) {
+		Intent processingIntent = new Intent(this,ProcessingScreen.class);
+		processingIntent.putParcelableArrayListExtra("Selected Features",selectedFeatures);
+		startActivity(processingIntent);
+	}
+	
 	private ArrayList<Feature> getSelectedFeatures() {
 
 		Feature[] features = getFeatures();
