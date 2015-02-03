@@ -15,7 +15,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/submitSelected"
+        android:id="@+id/submitFeatureButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

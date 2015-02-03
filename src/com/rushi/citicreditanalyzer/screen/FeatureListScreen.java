@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.citicreditanalyzer.R;
@@ -12,33 +16,85 @@ import com.rushi.citicreditanalyzer.citi.creditcard.CreditCardFeatures;
 
 public class FeatureListScreen extends Activity{
 
-	private ArrayList<String> featureList;
+	private Feature[] features;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_feature_list);
-		featureList = getFeatureList();
-		Feature features[] = new Feature[featureList.size()];
-		for(int i = 0 ; i < featureList.size() ; i++) {
-			Feature feature = new Feature();
-			feature.setFeature(featureList.get(i));
-			feature.setSelected(true);
-			features[i] = feature;
-		}
-		CheckBoxAdapter checkBoxAdapter = new CheckBoxAdapter(this, R.layout.activity_checkboxed_list, features);
-		ListView featureListView = (ListView) findViewById(R.id.featureListView);
+		
+		
+		setFeatures(getFeatureArray());
+		CheckBoxAdapter checkBoxAdapter = getCheckBoxAdapter(getFeatures());
+		
+		ListView featureListView = getfeatureListView();
 		featureListView.setAdapter(checkBoxAdapter);
+		
+		Button submitFeatureButton = getSubmitFeatureButton();
+		handleButtonClick(submitFeatureButton);
+	}
+
+	private void handleButtonClick(Button submitFeatureButton) {
+		submitFeatureButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ArrayList<Feature> selectedFeatures = getSelectedFeatures();
+			}
+
+			
+		});
+	}
+
+	private ArrayList<Feature> getSelectedFeatures() {
+
+		Feature[] features = getFeatures();
+		ArrayList<Feature> selectedFeatures = new ArrayList<Feature>();
+		
+		for(int featureIterator = 0 ; featureIterator < features.length ; featureIterator++) {
+			Feature feature =  features[featureIterator];
+			boolean isFeatureSelected = feature.isSelected();
+			if(isFeatureSelected) {
+				selectedFeatures.add(feature);
+			}
+		}
+		return selectedFeatures;
 	}
 	
-	
+	private Button getSubmitFeatureButton() {
+		Button submitFeaturesButton = (Button) findViewById(R.id.submitFeatureButton);
+		return submitFeaturesButton;
+	}
 
-	public ArrayList<String> getFeatureList() {
-		featureList = new ArrayList<String>();
+	private ListView getfeatureListView() {
+		ListView featureListView = (ListView) findViewById(R.id.featureListView);
+		return featureListView;
+	}
+
+	private CheckBoxAdapter getCheckBoxAdapter(Feature[] features) {
+		CheckBoxAdapter checkBoxAdapter = new CheckBoxAdapter(this, R.layout.activity_checkboxed_list, features);
+		return checkBoxAdapter;
+	}
+
+	private Feature[] getFeatureArray() {
+		
+		Feature features[] = new Feature[CreditCardFeatures.values().length];
+		int featureCount = 0;
 		for(CreditCardFeatures creditCardFeature : CreditCardFeatures.values()) {
-			featureList.add(creditCardFeature.getFeature());
+			Feature feature = new Feature();
+			feature.setFeature(creditCardFeature.getFeature());
+			feature.setSelected(true);
+			features[featureCount++] = feature;
 		}
-		return featureList;
+		return features;
+	}
+
+	public Feature[] getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(Feature[] features) {
+		this.features = features;
 	}
 	
 }
